@@ -92,7 +92,5 @@ public class ForumListForm extends ListActionForm {
 
 	public void setShowHidden(boolean isShowHidden) {
 		this.isShowHidden = isShowHidden;
-	}
-
-	
+	}	
 }

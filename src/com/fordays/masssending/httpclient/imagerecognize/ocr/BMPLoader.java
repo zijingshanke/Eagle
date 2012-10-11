@@ -10,12 +10,12 @@ import java.io.*;
 public class BMPLoader {
 	private InputStream is;
 	private int curPos = 0;
-	private int bitmapOffset; // 实际图像数据的开始位�?
+	private int bitmapOffset; // 实际图像数据的开始位�
 	private int width; // 图像的宽像素
 	private int height; // 图像的高像素
 	private short bitsPerPixel; // 1, 4, 8, or 24 (no color map)
 	private int compression; // 0 (none), 1 (8-bit RLE), or 2 (4-bit RLE)
-	private int actualSizeOfBitmap; // 位图的实际尺�?
+	private int actualSizeOfBitmap; // 位图的实际尺�
 	private int scanLineSize;
 	private int actualColorsUsed;
 	private byte r[], g[], b[]; // color palette
@@ -26,15 +26,15 @@ public class BMPLoader {
 	public BMPLoader() {
 	}
 
-	public int getWidthPixels() {// 获取图像的宽�?
+	public int getWidthPixels() {// 获取图像的宽�
 		return width;
 	}
 
-	public int getHeightPixels() {// 获取图像的高�?
+	public int getHeightPixels() {// 获取图像的高�
 		return height;
 	}
 
-	public int[] getIntData() {// 获取图像�?有像素�?�，存入整型数组
+	public int[] getIntData() {// 获取图像�有像素�，存入整型数组
 		return intData;
 	}
 
@@ -64,7 +64,7 @@ public class BMPLoader {
 	}
 
 	void getFileHeader() throws IOException, Exception {
-		// 14 bytes的文件头�?
+		// 14 bytes的文件头�
 		short fileType = 0x4d42;// always "BM"
 		int fileSize; // size of file in bytes
 		short reserved1 = 0; // always 0
@@ -81,7 +81,7 @@ public class BMPLoader {
 
 	void getBitmapHeader() throws IOException {
 
-		// 40 bytes的信息头�?
+		// 40 bytes的信息头�
 		int size; // size of this header in bytes
 		short planes; // no. of color planes: always 1
 		int sizeOfBitmap; // size of bitmap in bytes (may be 0: if so,
@@ -128,7 +128,7 @@ public class BMPLoader {
 			actualColorsUsed = 0; // no palette
 	}
 
-	void getPalette() throws IOException {// 颜色�?
+	void getPalette() throws IOException {// 颜色�
 		noOfEntries = actualColorsUsed;
 		// IJ.write("noOfEntries: " + noOfEntries);
 		if (noOfEntries > 0) {

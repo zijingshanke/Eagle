@@ -12,11 +12,11 @@ import java.net.*;
 import javax.imageio.ImageIO;
 
 /**
- * 登陆验证图片转换为数�?
+ * 登陆验证图片转换为数�
  */
 public class ValidateCode {
 
-	// 数字字符比特�?
+	// 数字字符比特�
 	private final long[][] NUMERIC = { { 512104545, 562436190 }, // '0'
 			{ 148931080, 136348222 }, // '1'
 			{ 511971394, 69273663 }, // '2'
@@ -29,7 +29,7 @@ public class ValidateCode {
 			{ 512104547, 486805660 } // '9'
 	};
 
-	// 字框�?
+	// 字框�
 	private int intCharHeight = 10;
 
 	// 字框横向间隙
@@ -38,7 +38,7 @@ public class ValidateCode {
 	// 字框纵向间隙
 	private int intCharSpaceY = 1;
 
-	// 字框�?
+	// 字框�
 	private int intCharWidth = 5;
 	private int IntImgHeight;
 	private BufferedImage img;
@@ -84,7 +84,7 @@ public class ValidateCode {
 	}
 
 	/**
-	 * 类初始工�?
+	 * 类初始工�
 	 */
 	private void init() {
 
@@ -92,12 +92,12 @@ public class ValidateCode {
 		intImgWith = img.getWidth();
 		IntImgHeight = img.getHeight();
 
-		// 得到图象的背景颜�?
+		// 得到图象的背景颜�
 		intBgColor = img.getRGB(7, 4);
 
 		// System.out.println(intBgColor);
 
-		// 初始化图象原点座�?
+		// 初始化图象原点座�
 		pOrigin = new Point(0, 0);
 	}
 
@@ -117,21 +117,21 @@ public class ValidateCode {
 	 * 得到字符的左上右下点座标
 	 * 
 	 * @param intNo
-	 *            int 第n个字�?
+	 *            int 第n个字�?
 	 * @return int[]
 	 */
 	private Point[] getCharRange(int intNo) {
 
-		// 左上右下点座�?
+		// 左上右下点座�
 		Point pTopLeft = new Point(0, 0);
 		Point pBottomRight = new Point(0, 0);
 
-		// 左上�?
+		// 左上�
 		pTopLeft.x = pOrigin.x + intCharWidth * (intNo - 1) + intCharSpaceH
 				* (intNo - 1);
 		pTopLeft.y = pOrigin.y;
 
-		// 右下�?
+		// 右下�?
 		pBottomRight.x = 1 + pOrigin.x + intCharWidth * intNo + intCharSpaceH
 				* (intNo - 1) - 1;
 		pBottomRight.y = pOrigin.y + intCharHeight - 1;
@@ -144,9 +144,9 @@ public class ValidateCode {
 	 * 与背景颜色比较返回相应的字符
 	 * 
 	 * @param x
-	 *            int 横座�?
+	 *            int 横座�
 	 * @param y
-	 *            int 纵座�?
+	 *            int 纵座�
 	 * @return char 返回字符
 	 */
 	private char getBit(int x, int y) {
@@ -166,20 +166,20 @@ public class ValidateCode {
 
 	/** */
 	/**
-	 * 得到第n个字符对应的字符�?
+	 * 得到第n个字符对应的字符�
 	 * 
 	 * @param intNo
-	 *            int 第n个字�?
-	 * @return String 代表字符位的�?
+	 *            int 第n个字�?
+	 * @return String 代表字符位的�?
 	 */
 	private String getCharString(int intNo) {
 
-		// 本字符的左上右下点座�?
+		// 本字符的左上右下点座�?
 		Point[] p = getCharRange(intNo);
 		Point pTopLeft = p[0];
 		Point pBottomRight = p[1];
 
-		// 换算边界�?
+		// 换算边界�?
 		int intX1, intY1, intX2, intY2;
 
 		intX1 = pTopLeft.x;
@@ -192,7 +192,7 @@ public class ValidateCode {
 		// System.out.println("intX2=" + intX2);
 		// System.out.println("intY2=" + intY2);
 
-		// 在边界内循环取象�?
+		// 在边界内循环取象�?
 		int i, j;
 		String strChar = "";
 
@@ -211,11 +211,11 @@ public class ValidateCode {
 	}
 
 	/**
-	 * 得到第n个字符对应数�?
+	 * 得到第n个字符对应数�?
 	 * 
 	 * @param intNo
-	 *            int 第n个字�?
-	 * @return int 对应数�??
+	 *            int 第n个字�?
+	 * @return int 对应数�??
 	 */
 	public int getNum(int intNo) {
 
@@ -227,7 +227,7 @@ public class ValidateCode {
 		String strCharHigh = strChar.substring(0, strChar.length() / 2);
 		String strCharLow = strChar.substring(strChar.length() / 2);
 
-		// 计算高位和低位�??
+		// 计算高位和低位�??
 		long lCharHigh = Long.parseLong(strCharHigh, 2);
 
 		System.out.println(lCharHigh);
@@ -250,7 +250,7 @@ public class ValidateCode {
 				} // 834533329 242870177
 				else {
 					intNum = 1;
-				} // 默认�?1 低位�? 937393609 937393601
+				} // 默认�?1 低位�? 937393609 937393601
 			}
 		}
 

@@ -391,9 +391,15 @@ public class AssignMessageBizImp implements AssignMessageBiz {
 			throws AppException {
 		AssignMessageLog log = new AssignMessageLog();
 
+		Timestamp logTime = assignMessage.getSendedtime();
+
+		if (logTime == null) {
+			logTime = new Timestamp(System.currentTimeMillis());
+		}
+
 		log.setAssignMessage(assignMessage);
 		log.setLogType(logType);
-		log.setLogTime(assignMessage.getSendedtime());
+		log.setLogTime(logTime);
 		log.setContent(assignMessage.getMemo());
 		log.setStatus(assignMessage.getStatus());
 

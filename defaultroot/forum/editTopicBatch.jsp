@@ -74,15 +74,8 @@
 							<td width="10" class="tbll"></td>
 							<td valign="top" class="body">
 								<div class="crumb">
-									<logic:equal value="update" property="thisAction" name="topic">
-										<c:import
-											url="../_jsp/mainTitle.jsp?title1=主题管理&title2=编辑主题信息"
-											charEncoding="UTF-8" />
-									</logic:equal>
-									<logic:equal value="insert" property="thisAction" name="topic">
-										<c:import url="../_jsp/mainTitle.jsp?title1=主题管理&title2=主题版块"
-											charEncoding="UTF-8" />
-									</logic:equal>
+									<c:import url="../_jsp/mainTitle.jsp?title1=主题管理&title2=批量添加主题"
+										charEncoding="UTF-8" />
 								</div>
 								<hr>
 								<table width="100%" cellpadding="0" cellspacing="0" border="0"

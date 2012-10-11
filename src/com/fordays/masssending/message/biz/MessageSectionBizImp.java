@@ -239,10 +239,10 @@ public class MessageSectionBizImp implements MessageSectionBiz {
 			String topicId = topicIds[i];
 			String messageId = messageIds[i];
 			//
-			System.out.println(i + "-forumId:" + forumId);
-			System.out.println(i + "-sectionId:" + sectionId);
-			System.out.println(i + "-topicId:" + topicId);
-			System.out.println(i + "-messageId:" + messageId);
+//			System.out.println(i + "-forumId:" + forumId);
+//			System.out.println(i + "-sectionId:" + sectionId);
+//			System.out.println(i + "-topicId:" + topicId);
+//			System.out.println(i + "-messageId:" + messageId);
 
 			MessageSection tempMessageSection = new MessageSection();
 			long status = messageSection.getStatus();

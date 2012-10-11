@@ -103,7 +103,7 @@
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:fdpay.properties" />
+		<property name="location" value="classpath:mass-sending.properties" />
 	</bean>
 
 	<!--  <context:property-placeholder location="classpath:fdpay.properties"></context:property-placeholder> -->

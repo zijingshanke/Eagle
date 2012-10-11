@@ -93,8 +93,6 @@ public void setIndex(int index)
     >
 	</property>
 
-
-
     <many-to-one
         name="forum"
         class="com.fordays.masssending.forum.Forum"

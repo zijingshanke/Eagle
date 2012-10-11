@@ -1,4 +1,4 @@
-﻿package com.fordays.masssending.user.action;
+package com.fordays.masssending.user.action;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;

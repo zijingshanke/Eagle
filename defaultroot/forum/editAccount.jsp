@@ -30,7 +30,7 @@
 	<body>
 		<div id="mainContainer">
 			<div id="container">
-				<html:form action="/forum/account.do">
+				<html:form action="/transaction/account.do">
 					<html:hidden property="thisAction" name="account" />
 					<html:hidden property="id" name="account" />
 					<table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -43,12 +43,12 @@
 							<td width="10" class="tbll"></td>
 							<td valign="top" class="body">
 								<div class="crumb">
-									<logic:equal value="update" property="thisAction" name="user">
+									<logic:equal value="update" property="thisAction" name="account">
 										<c:import
 											url="../_jsp/mainTitle.jsp?title1=帐号管理&title2=编辑帐号信息"
 											charEncoding="UTF-8" />
 									</logic:equal>
-									<logic:equal value="insert" property="thisAction" name="user">
+									<logic:equal value="insert" property="thisAction" name="account">
 										<c:import url="../_jsp/mainTitle.jsp?title1=帐号管理&title2=新建帐号"
 											charEncoding="UTF-8" />
 									</logic:equal>
