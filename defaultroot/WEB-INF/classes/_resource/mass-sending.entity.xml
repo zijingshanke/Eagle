@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- [syncWithModel=true] -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">
+
+  <import resource="com/fordays/masssending/forum.entity.xml" />
+  
+  <import resource="com/fordays/masssending/message.entity.xml" />
+  
+  <import resource="com/fordays/masssending/right.entity.xml" />
+  
+  <import resource="com/fordays/masssending/system.entity.xml" />
+  
+  <import resource="com/fordays/masssending/user.entity.xml" />
+  
+
+</beans>

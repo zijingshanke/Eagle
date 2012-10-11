@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="false" default-autowire="no"
+	default-dependency-check="none">
+	<bean name="/user/userlist"
+		class="com.fordays.masssending.user.action.UserListAction" singleton="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="userBiz">
+			<ref bean="userBiz" />
+		</property>
+	</bean>
+	<bean name="/user/user"
+		class="com.fordays.masssending.user.action.UserAction" singleton="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="userBiz">
+			<ref bean="userBiz" />
+		</property>
+		<property name="rightBiz">
+			<ref bean="rightBiz" />
+		</property>
+		<property name="loginlogBiz">
+			<ref bean="loginlogBiz" />
+		</property>
+	</bean>
+	<bean name="loginlogBiz"
+		class="com.fordays.masssending.system.biz.LoginLogBizImpl" singleton="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="loginlogDao">
+			<ref bean="loginlogDao" />
+		</property>
+	</bean>
+	<bean id="loginlogDao"
+		class="com.fordays.masssending.system.dao.LoginLogDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<bean id="userBiz" class="com.fordays.masssending.user.biz.UserBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="userDAO">
+			<ref bean="userDAO" />
+		</property>
+		<property name="sysLogDAO">
+			<ref bean="sysLogDAO" />
+		</property>
+	</bean>
+
+	<bean id="userDAO" class="com.fordays.masssending.user.dao.UserDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+</beans>

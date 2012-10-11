@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<display-name>论坛群发系统</display-name>
+	<description>论坛群发系统</description>
+	<filter>
+		<filter-name>Set Character Encoding</filter-name>
+		<filter-class>
+			com.neza.filters.SetCharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Set Character Encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+
+	<listener>
+		<listener-class>
+			com.fordays.masssending.base.ContextListener
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>
+			org.apache.struts.action.ActionServlet
+		</servlet-class>
+		<init-param>
+			<param-name>application</param-name>
+			<param-value>ApplicationResources</param-value>
+		</init-param>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>
+				/WEB-INF/struts-config.xml ,
+				/WEB-INF/struts-config-sysUser.xml ,
+				/WEB-INF/struts-config-system.xml ,
+				/WEB-INF/struts-config-right.xml,
+				/WEB-INF/struts-config-forum.xml,
+				/WEB-INF/struts-config-message.xml
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>2</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<!-- This is the servlet used for WebUCCompanion service for initialization -->
+	<!-- 
+		<servlet>
+		<servlet-name>WebUCCompanionServlet</servlet-name>
+		<display-name>WebUCCompanion Servlet</display-name>
+		<servlet-class>
+		com.jiangh.webuc.servicemanager.ThirdPartyServerApp
+		</servlet-class>
+		<init-param>
+		<param-name>log4j config file path</param-name>
+		<param-value>WebUCCompanion/conf/log4j.properties</param-value>
+		</init-param>
+		<init-param>
+		<param-name>webUCCompanion config file path</param-name>
+		<param-value>WebUCCompanion/conf/WebUCConfig.xml</param-value>
+		</init-param>
+		<init-param>
+		<param-name>web application root dir</param-name>
+		<param-value>/mass-sending/WebUCCompanion</param-value>
+		</init-param>
+		<load-on-startup>14</load-on-startup>
+		</servlet>
+		
+		<servlet>
+		<servlet-name>AxisServlet</servlet-name>
+		<display-name>Apache-Axis Servlet</display-name>
+		<servlet-class>
+		org.apache.axis.transport.http.AxisServlet
+		</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>*.jws</url-pattern>
+		</servlet-mapping>
+		
+		<mime-mapping>
+		<extension>wsdl</extension>
+		<mime-type>text/xml</mime-type>
+		</mime-mapping>
+		<mime-mapping>
+		<extension>xsd</extension>
+		<mime-type>text/xml</mime-type>
+		</mime-mapping>	
+	-->
+	<!-- This is the servlet used for WebUCCompanion service for initialization -->
+
+	<servlet>
+		<servlet-name>rand</servlet-name>
+		<servlet-class>com.neza.base.NumberImage</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>rand</servlet-name>
+		<url-pattern>/servlet/com.neza.base.NumberImage</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<taglib>
+		<taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+		<taglib-location>/WEB-INF/struts-html-el.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/c.tld</taglib-uri>
+		<taglib-location>/WEB-INF/c.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/neza.tld</taglib-uri>
+		<taglib-location>/WEB-INF/neza.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/fmt.tld</taglib-uri>
+		<taglib-location>/WEB-INF/fmt.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/taglibs-string.tld</taglib-uri>
+		<taglib-location>/WEB-INF/taglibs-string.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/taglibs-datetime.tld</taglib-uri>
+		<taglib-location>/WEB-INF/taglibs-datetime.tld</taglib-location>
+	</taglib>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+</web-app>

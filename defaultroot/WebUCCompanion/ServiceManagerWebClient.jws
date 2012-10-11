@@ -1,0 +1,100 @@
+
+
+import com.jiangh.webuc.data.ServiceData;
+import com.jiangh.webuc.util.Utility;
+import com.jiangh.webuc.data.Constants;
+import com.jiangh.webuc.webclient.thirdPartyserver.IfThirdPtyAppLocalInf;
+
+/**
+ * <p>Title: Web宽乐伴侣</p>
+ *
+ * <p>Description:
+ * 本业务作为第三方业务与宽乐通信WebService接口进行交互，为用户提供Web方式接入宽乐通信业务的能力</p>
+ * 业务全局数据管理处理类。
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: GSTA</p>
+ *
+ * @author Jianghong
+ * @version 1.0
+ */
+public class ServiceManagerWebClient {
+
+    private static final String CLASS_DESC = "ServiceManagerWebClient";
+
+    public void setLocalWSAddr(String localWSAddr) {
+        ServiceData.setLocalWSAddr(localWSAddr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "Now the local callback service url is set to " +
+                      localWSAddr);
+    }
+
+    public String getLocalWSAddr() {
+        return ServiceData.getLocalWSAddr();
+    }
+
+    public void setRegisterWSURL(String urlStr) {
+        ServiceData.setRegisterWSURL(urlStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "Now the UC register service url is set to " + urlStr);
+    }
+
+    public String getRegisterWSURL() {
+        return ServiceData.getRegisterWSURL();
+    }
+
+    public void setCTCWSURL(String urlStr) {
+        ServiceData.setCtcWSURL(urlStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "Now the UC CTC service url is set to " + urlStr);
+    }
+
+    public String getCTCWSURL() {
+        return ServiceData.getCtcWSURL();
+    }
+
+    public void setCTDWSURL(String urlStr) {
+        ServiceData.setCtdWSURL(urlStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "Now the UC CTD service url is set to " + urlStr);
+    }
+
+    public String getCTDWSURL() {
+        return ServiceData.getCtdWSURL();
+    }
+
+    public void setSMSWSURL(String urlStr) {
+        ServiceData.setSmsWSURL(urlStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "Now the UC SMS service url is set to " + urlStr);
+    }
+
+    public String getSMSWSURL() {
+        return ServiceData.getSmsWSURL();
+    }
+
+    public void setThirdPartyServiceURL(String urlStr) {
+        ServiceData.setThirdPartyServiceURL(urlStr);
+    }
+
+    public String getThirdPartyServiceURL() {
+        return ServiceData.getThirdPartyServiceURL();
+    }
+
+    /**
+     * 2007-05-23 Jianghong
+     * 第三方服务器应用以本地接口的方式接入本业务，需要提供回调接口实现类的实例
+     */
+    public void setThirdPtyAppLocalInf(IfThirdPtyAppLocalInf
+                                       thirdPtyAllLocalInf) {
+        if (Utility.getThirdPtyAppAccessMode().equals("local")) {
+            ServiceData.setThirdPtyAllLocalInf(thirdPtyAllLocalInf);
+        }
+        else {
+            Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                "The third party application access mode is not local,so don't do anything.");
+        }
+    }
+
+}

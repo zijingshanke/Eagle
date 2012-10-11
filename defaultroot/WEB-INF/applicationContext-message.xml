@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="false" default-autowire="no"
+	default-dependency-check="none">
+	<!-- 帖子管理 -->
+	<bean name="/message/messagelist"
+		class="com.fordays.masssending.message.action.MessageListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="messageBiz">
+			<ref bean="messageBiz" />
+		</property>
+	</bean>
+	<bean name="/message/message"
+		class="com.fordays.masssending.message.action.MessageAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="messageBiz">
+			<ref bean="messageBiz" />
+		</property>
+	</bean>
+
+	<bean id="messageBiz"
+		class="com.fordays.masssending.message.biz.MessageBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="messageDAO">
+			<ref bean="messageDAO" />
+		</property>
+	</bean>
+
+	<bean id="messageDAO"
+		class="com.fordays.masssending.message.dao.MessageDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 任务管理 -->
+	<bean name="/message/assignmentlist"
+		class="com.fordays.masssending.message.action.AssignmentListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="assignmentBiz">
+			<ref bean="assignmentBiz" />
+		</property>
+	</bean>
+	<bean name="/message/assignment"
+		class="com.fordays.masssending.message.action.AssignmentAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="assignmentBiz">
+			<ref bean="assignmentBiz" />
+		</property>
+	</bean>
+
+	<bean id="assignmentBiz"
+		class="com.fordays.masssending.message.biz.AssignmentBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="assignmentDAO">
+			<ref bean="assignmentDAO" />
+		</property>
+	</bean>
+
+	<bean id="assignmentDAO"
+		class="com.fordays.masssending.message.dao.AssignmentDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 发帖任务管理 -->
+	<bean name="/message/assignMessagelist"
+		class="com.fordays.masssending.message.action.AssignMessageListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="assignMessageBiz">
+			<ref bean="assignMessageBiz" />
+		</property>
+		<property name="messageSectionBiz">
+			<ref bean="messageSectionBiz" />
+		</property>
+		<property name="assignmentBiz">
+			<ref bean="assignmentBiz" />
+		</property>
+		<property name="userBiz">
+			<ref bean="userBiz" />
+		</property>
+	</bean>
+	<bean name="/message/assignMessage"
+		class="com.fordays.masssending.message.action.AssignMessageAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="assignMessageBiz">
+			<ref bean="assignMessageBiz" />
+		</property>
+	</bean>
+
+	<bean id="assignMessageBiz"
+		class="com.fordays.masssending.message.biz.AssignMessageBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="assignMessageDAO">
+			<ref bean="assignMessageDAO" />
+		</property>
+		<property name="assignMessageLogDAO">
+			<ref bean="assignMessageLogDAO" />
+		</property>
+		<property name="messageSectionDAO">
+			<ref bean="messageSectionDAO" />
+		</property>
+		<property name="assignmentDAO">
+			<ref bean="assignmentDAO" />
+		</property>
+		<property name="accountDAO">
+			<ref bean="accountDAO" />
+		</property>
+		<property name="userDAO">
+			<ref bean="userDAO" />
+		</property>
+	</bean>
+
+	<bean id="assignMessageDAO"
+		class="com.fordays.masssending.message.dao.AssignMessageDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 发帖任务日志管理 -->
+	<bean name="/message/assignMessageLoglist"
+		class="com.fordays.masssending.message.action.AssignMessageLogListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="assignMessageLogBiz">
+			<ref bean="assignMessageLogBiz" />
+		</property>
+	</bean>
+
+	<bean id="assignMessageLogBiz"
+		class="com.fordays.masssending.message.biz.AssignMessageLogBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="assignMessageLogDAO">
+			<ref bean="assignMessageLogDAO" />
+		</property>
+	</bean>
+
+	<bean id="assignMessageLogDAO"
+		class="com.fordays.masssending.message.dao.AssignMessageLogDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 发帖目标（帖子版块）管理 -->
+	<bean name="/message/messageSectionlist"
+		class="com.fordays.masssending.message.action.MessageSectionListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="messageSectionBiz">
+			<ref bean="messageSectionBiz" />
+		</property>
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+		<property name="sectionBiz">
+			<ref bean="sectionBiz" />
+		</property>
+		<property name="messageBiz">
+			<ref bean="messageBiz" />
+		</property>
+	</bean>
+	<bean name="/message/messageSection"
+		class="com.fordays.masssending.message.action.MessageSectionAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="messageSectionBiz">
+			<ref bean="messageSectionBiz" />
+		</property>
+	</bean>
+
+	<bean id="messageSectionBiz"
+		class="com.fordays.masssending.message.biz.MessageSectionBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="messageSectionDAO">
+			<ref bean="messageSectionDAO" />
+		</property>
+		<property name="forumDAO">
+			<ref bean="forumDAO" />
+		</property>
+		<property name="sectionDAO">
+			<ref bean="sectionDAO" />
+		</property>
+		<property name="topicDAO">
+			<ref bean="topicDAO" />
+		</property>
+		<property name="messageDAO">
+			<ref bean="messageDAO" />
+		</property>
+		<property name="accountDAO">
+			<ref bean="accountDAO" />
+		</property>
+	</bean>
+
+	<bean id="messageSectionDAO"
+		class="com.fordays.masssending.message.dao.MessageSectionDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+</beans>

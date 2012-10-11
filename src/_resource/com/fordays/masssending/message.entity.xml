@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [syncWithModel=true] -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">  
+
+  <bean id="Message_Entity" class="com.fordays.masssending.message.Message" >
+    <property name="metaName_" value="orm/com/fordays/masssending/message/Message.meta.xml" />
+  </bean>
+  
+  <bean id="Assignment_Entity" class="com.fordays.masssending.message.Assignment" >
+    <property name="metaName_" value="orm/com/fordays/masssending/message/Assignment.meta.xml" />
+  </bean>
+  
+
+</beans>

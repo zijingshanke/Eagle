@@ -1,0 +1,95 @@
+
+import com.jiangh.webuc.servicemanager.CTDManager;
+import com.jiangh.webuc.util.Utility;
+import com.jiangh.webuc.data.Constants;
+
+/**
+ * <p>Title: Web宽乐伴侣</p>
+ *
+ * <p>Description:
+ * 本业务作为第三方业务与宽乐通信WebService接口进行交互，为用户提供Web方式接入宽乐通信业务的能力</p>
+ * web客户端处理类。接受web容器调用，完成管理员或用户对CTD业务能力接入。本类将调用CTDManager类
+ * 方法，有其对请求进行继续处理。
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: GSTA</p>
+ *
+ * @author Jianghong
+ * @version 1.0
+ */
+public class CTDWebClient {
+
+    private static final String CLASS_DESC = "CTDWebClient";
+
+    /**
+     * Jianghong 2007-02-16
+     * 发起点击拨号呼叫Web请求处理
+     */
+    public String dialCallClient(String uc, String pw, String[] callees,
+                                 String cee) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTDWebClient::dialCallClient called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        for (int i = 0; i < callees.length; i++) {
+            Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "callee"+i+':'+callees[i]);
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "cee"+cee);
+
+        String sessionID = CTDManager.ctdManager.CreateCall(uc, pw, callees,
+            cee);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "CTDWebClient::dialCallClient return sessionID:" +
+                      sessionID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return sessionID;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 终止点击拨号呼叫Web请求处理
+     */
+    public String releaseCallClient(String uc, String pw, String sessionID) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTDWebClient::releaseCallClient called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "sessionID:"+sessionID);
+
+        String retStr = CTDManager.ctdManager.DeleteCall(uc, pw, sessionID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "CTDWebClient::releaseCallClient return sessionID:" +
+                      sessionID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return retStr;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 查询呼叫状态Web请求处理
+     */
+    public String[] getCallStatusClient(String uc, String pw) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+            "CTDWebClient::getCallStatusClient called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+
+        String[] callInfo = CTDManager.ctdManager.GetCallStatus(uc, pw);
+        String retInf = null;
+        for (int i = 0; i < callInfo.length; i++) {
+            retInf += callInfo[i] + "|";
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "CTCWebClient::getCallStatusClient return info:" + retInf);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return callInfo;
+
+    }
+
+}

@@ -1,0 +1,68 @@
+
+import com.jiangh.webuc.data.Constants;
+import com.jiangh.webuc.servicemanager.RegisterManager;
+import com.jiangh.webuc.servicemanager.CTDManager;
+import com.jiangh.webuc.servicemanager.CTCManager;
+import com.jiangh.webuc.servicemanager.SMSManager;
+import com.jiangh.webuc.util.Utility;
+
+/**
+ * <p>Title: Web宽乐伴侣</p>
+ *
+ * <p>Description:
+ * 本业务作为第三方业务与宽乐通信WebService接口进行交互，为用户提供Web方式接入宽乐通信业务的能力</p>
+ * UC Service接口回调类。在本应用中，被暴露成WebService接口。UC业务将作为客户端访问本类实现
+ * 接口事件的回调。
+ *
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: GSTA</p>
+ *
+ * @author Jianghong
+ * @version 1.0
+ */
+public class EventCallBackService {
+
+    private static final String CLASS_DESC = "EventCallBackService";
+
+    public void NotifyStatus(int eventID,String sessionID,int res,String para1){
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG,CLASS_DESC, "eventID:" + eventID);
+
+        switch(eventID){
+        case Constants.CALLBACK_EVENTID_CALLBACKADDR_CHANGED:
+            RegisterManager.regManager.eventCallBack(eventID,String.valueOf(res),para1);
+        break;
+        case Constants.CALLBACK_EVENTID_CTD_CREATECALL:
+        case Constants.CALLBACK_EVENTID_CTD_DELETECALL:
+            CTDManager.ctdManager.eventCallBack(eventID,sessionID,String.valueOf(res),para1);
+        break;
+        case Constants.CALLBACK_EVENTID_CTC_CREATECONF:
+        case Constants.CALLBACK_EVENTID_CTC_ADDCALLEE:
+        case Constants.CALLBACK_EVENTID_CTC_DELCALLEE:
+        case Constants.CALLBACK_EVENTID_CTC_DELETECONF:
+            CTCManager.ctcManager.eventCallBack(eventID,sessionID,String.valueOf(res),para1);
+        break;
+        case Constants.CALLBACK_EVENTID_SMS_SENDMESSAGE:
+            SMSManager.eventCallBack(eventID,sessionID,String.valueOf(res),para1);
+        break;
+
+        }
+    }
+
+    public void EchoOfSendSMS(String ucNum,String cee,int msgid,int res,String recvt){
+
+        SMSManager.EchoOfSendSMS(ucNum,cee,msgid,res,recvt);
+    }
+
+    public String RecvSMS(String caller, String time,String cont,String ucNum){
+
+        String res =null;
+        res = SMSManager.RecvSMS(caller, time,cont,ucNum);
+
+        return res;
+
+    }
+
+
+}

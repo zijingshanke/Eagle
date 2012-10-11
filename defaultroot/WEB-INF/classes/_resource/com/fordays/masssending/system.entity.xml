@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [syncWithModel=true] -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">  
+
+  <bean id="SysLog_Entity" class="com.fordays.masssending.system.SysLog" >
+    <property name="metaName_" value="orm/com/fordays/masssending/system/SysLog.meta.xml" />
+  </bean>
+  
+  <bean id="LogDetail_Entity" class="com.fordays.masssending.system.LogDetail" >
+    <property name="metaName_" value="orm/com/fordays/masssending/system/LogDetail.meta.xml" />
+  </bean>
+  
+  <bean id="TaskTimestamp_Entity" class="com.fordays.masssending.system.TaskTimestamp" >
+    <property name="metaName_" value="orm/com/fordays/masssending/system/TaskTimestamp.meta.xml" />
+  </bean>
+  
+  <bean id="LoginLog_Entity" class="com.fordays.masssending.system.LoginLog" >
+    <property name="metaName_" value="orm/com/fordays/masssending/system/LoginLog.meta.xml" />
+  </bean>
+  
+
+</beans>

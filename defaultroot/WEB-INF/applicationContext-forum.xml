@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="false" default-autowire="no"
+	default-dependency-check="none">
+	<bean name="/forum/forumlist"
+		class="com.fordays.masssending.forum.action.ForumListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+		<property name="sectionBiz">
+			<ref bean="sectionBiz" />
+		</property>
+	</bean>
+	<bean name="/forum/forum"
+		class="com.fordays.masssending.forum.action.ForumAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+	</bean>
+
+	<bean id="forumBiz"
+		class="com.fordays.masssending.forum.biz.ForumBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="forumDAO">
+			<ref bean="forumDAO" />
+		</property>
+		<property name="sectionDAO">
+			<ref bean="sectionDAO" />
+		</property>
+		<property name="topicDAO">
+			<ref bean="topicDAO" />
+		</property>
+	</bean>
+
+	<bean id="forumDAO"
+		class="com.fordays.masssending.forum.dao.ForumDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean name="/forum/sectionlist"
+		class="com.fordays.masssending.forum.action.SectionListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sectionBiz">
+			<ref bean="sectionBiz" />
+		</property>
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+		<property name="topicBiz">
+			<ref bean="topicBiz" />
+		</property>
+	</bean>
+
+	<bean name="/forum/section"
+		class="com.fordays.masssending.forum.action.SectionAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sectionBiz">
+			<ref bean="sectionBiz" />
+		</property>
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+	</bean>
+
+	<bean id="sectionBiz"
+		class="com.fordays.masssending.forum.biz.SectionBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="sectionDAO">
+			<ref bean="sectionDAO" />
+		</property>
+		<property name="forumDAO">
+			<ref bean="forumDAO" />
+		</property>
+	</bean>
+
+	<bean id="sectionDAO"
+		class="com.fordays.masssending.forum.dao.SectionDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean name="/forum/accountlist"
+		class="com.fordays.masssending.forum.action.AccountListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="accountBiz">
+			<ref bean="accountBiz" />
+		</property>
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+	</bean>
+	<bean name="/forum/account"
+		class="com.fordays.masssending.forum.action.AccountAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="accountBiz">
+			<ref bean="accountBiz" />
+		</property>
+	</bean>
+
+	<bean id="accountBiz"
+		class="com.fordays.masssending.forum.biz.AccountBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="accountDAO">
+			<ref bean="accountDAO" />
+		</property>
+		<property name="forumDAO">
+			<ref bean="forumDAO" />
+		</property>
+		<property name="messageSectionDAO">
+			<ref bean="messageSectionDAO" />
+		</property>
+	</bean>
+
+	<bean id="accountDAO"
+		class="com.fordays.masssending.forum.dao.AccountDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean name="/forum/topiclist"
+		class="com.fordays.masssending.forum.action.TopicListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="topicBiz">
+			<ref bean="topicBiz" />
+		</property>
+		<property name="forumBiz">
+			<ref bean="forumBiz" />
+		</property>
+	</bean>
+	<bean name="/forum/topic"
+		class="com.fordays.masssending.forum.action.TopicAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="topicBiz">
+			<ref bean="topicBiz" />
+		</property>
+	</bean>
+
+	<bean id="topicBiz"
+		class="com.fordays.masssending.forum.biz.TopicBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="topicDAO">
+			<ref bean="topicDAO" />
+		</property>
+		<property name="sectionDAO">
+			<ref bean="sectionDAO" />
+		</property>
+	</bean>
+
+	<bean id="topicDAO"
+		class="com.fordays.masssending.forum.dao.TopicDAOImp"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+</beans>

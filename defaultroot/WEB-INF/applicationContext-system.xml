@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="false" default-autowire="no"
+	default-dependency-check="none">
+
+	<bean id="sysInitBiz"
+		class="com.fordays.masssending.system.biz.SysInitBizImp">		
+	</bean>
+
+	<bean name="/system/sysloglist"
+		class="com.fordays.masssending.system.action.SysLogAction" singleton="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="sysLogBiz">
+			<ref bean="sysLogBiz" />
+		</property>
+	</bean>
+
+	<bean name="/system/loginloglist"
+		class="com.fordays.masssending.system.action.LoginLogListAction"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="loginlogBiz">
+			<ref bean="loginlogBiz" />
+		</property>
+	</bean>
+
+	<bean name="loginlogBiz"
+		class="com.fordays.masssending.system.biz.LoginLogBizImpl" singleton="false"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="loginlogDao">
+			<ref bean="loginlogDao" />
+		</property>
+	</bean>
+	<bean id="sysLogBiz"
+		class="com.fordays.masssending.system.biz.SysLogBizImp">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="sysLogDAO">
+			<ref bean="sysLogDAO" />
+		</property>
+	</bean>
+	<bean id="sysLogDAO"
+		class="com.fordays.masssending.system.dao.SysLogDAOImp" lazy-init="default"
+		autowire="default" dependency-check="default">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean id="loginlogDao"
+		class="com.fordays.masssending.system.dao.LoginLogDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<bean name="tasktimestampBiz"
+		class="com.fordays.masssending.system.biz.TaskTimestampBizImpl"
+		singleton="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="tasktimestampDAO">
+			<ref bean="tasktimestampDAO" />
+		</property>
+	</bean>
+	
+	<bean name="tasktimestampDAO"
+		class="com.fordays.masssending.system.dao.TaskTimestampDAOImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+</beans>

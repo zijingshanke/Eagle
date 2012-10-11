@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [syncWithModel=true] -->
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="true">  
+
+  <bean id="Forum_Entity" class="com.fordays.masssending.forum.Forum" >
+    <property name="metaName_" value="orm/com/fordays/masssending/forum/Forum.meta.xml" />
+  </bean>
+  
+  <bean id="Section_Entity" class="com.fordays.masssending.forum.Section" >
+    <property name="metaName_" value="orm/com/fordays/masssending/forum/Section.meta.xml" />
+  </bean>
+  
+  <bean id="Topic_Entity" class="com.fordays.masssending.forum.Topic" >
+    <property name="metaName_" value="orm/com/fordays/masssending/forum/Topic.meta.xml" />
+  </bean>
+  
+  <bean id="Account_Entity" class="com.fordays.masssending.forum.Account" >
+    <property name="metaName_" value="orm/com/fordays/masssending/forum/Account.meta.xml" />
+  </bean>
+  
+
+</beans>

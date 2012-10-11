@@ -1,0 +1,50 @@
+
+import com.jiangh.webuc.servicemanager.SMSManager;
+import com.jiangh.webuc.servicemanager.ThirdPartyServerApp;
+import com.jiangh.webuc.util.Utility;
+import com.jiangh.webuc.data.Constants;
+
+/**
+ * <p>Title: Web宽乐伴侣</p>
+ *
+ * <p>Description:
+ * 本业务作为第三方业务与宽乐通信WebService接口进行交互，为用户提供Web方式接入宽乐通信业务的能力</p>
+ * web客户端处理类。接受web容器调用，完成管理员或用户对SMS业务能力接入。本类将调用SMSManager类
+ * 方法，有其对请求进行继续处理。
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: GSTA</p>
+ *
+ * @author Liuhao
+ * @version 1.0
+ */
+public class SMSWebClient {
+
+    private static final String CLASS_DESC = "SMSWebClient";
+
+    /**
+     * Liuhao 2007-02-16
+     * 发送短信Web请求处理
+     */
+    public String SMSWebClient(String uc, String pw, String[] callee,/* int msgid,*/
+                               String cont, String isreturn) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+            "SMSWebClient::sendSMSClient send message with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        for (int i = 0; i < callee.length; i++) {
+            Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "callee"+i+':'+callee[i]);
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "content:"+cont);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "isreturn:"+isreturn);
+
+        String sessionID = new SMSManager().SendSMS(uc, pw, callee,
+            Utility.getEncoderStr(cont),/* msgid, */isreturn);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+                      "SMSWebClient::SMSClient return sessionID:" + sessionID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+        return sessionID;
+    }
+
+}

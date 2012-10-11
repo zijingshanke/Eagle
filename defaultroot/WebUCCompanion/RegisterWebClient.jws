@@ -1,0 +1,44 @@
+
+import com.jiangh.webuc.servicemanager.RegisterManager;
+import com.jiangh.webuc.util.Utility;
+import com.jiangh.webuc.data.Constants;
+
+/**
+ * <p>Title: Web宽乐伴侣</p>
+ *
+ * <p>Description:
+ * 本业务作为第三方业务与宽乐通信WebService接口进行交互，为用户提供Web方式接入宽乐通信业务的能力</p>
+ * web客户端处理类。接受web容器调用，完成管理员对Register业务能力接入。本类将调用RegisterManager类
+ * 方法，有其对请求进行继续处理。
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: GSTA</p>
+ *
+ * @author Jianghong
+ * @version 1.0
+ */
+public class RegisterWebClient {
+
+    private static final String CLASS_DESC = "RegisterWebClient";
+
+    /**
+     * Jianghong 2007-02-16
+     * 注册服务Web请求处理
+     */
+    public String registerToService(String uc, String pw) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC,
+            "RegisterWebClient::registerToService called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+
+        String ret = RegisterManager.regManager.RegToRemoteService(uc, pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "RegisterWebClient::registerToService return code:" + ret);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+
+        return ret;
+
+    }
+
+}

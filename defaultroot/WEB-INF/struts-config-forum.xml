@@ -1,0 +1,98 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by ccggyy2002 (Delphi) -->
+
+<struts-config>
+	<form-beans>
+		<form-bean name="forum"
+			type="com.fordays.masssending.forum.Forum" />
+		<form-bean name="forumListForm"
+			type="com.fordays.masssending.forum.ForumListForm" />
+
+		<form-bean name="section"
+			type="com.fordays.masssending.forum.Section" />
+		<form-bean name="sectionListForm"
+			type="com.fordays.masssending.forum.SectionListForm" />
+
+		<form-bean name="topic"
+			type="com.fordays.masssending.forum.Topic" />
+		<form-bean name="topicListForm"
+			type="com.fordays.masssending.forum.TopicListForm" />
+
+		<form-bean name="account"
+			type="com.fordays.masssending.forum.Account" />
+		<form-bean name="accountListForm"
+			type="com.fordays.masssending.forum.AccountListForm" />
+	</form-beans>
+
+	<action-mappings>
+		<action name="forum" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/forum" validate="false">
+			<forward name="viewforum" path="/forum/viewForum.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="forumListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/forumlist" validate="false" scope="request">
+			<forward name="listforum" path="/forum/listForum.jsp" />
+			<forward name="editforum" path="/forum/editForum.jsp" />
+			<forward name="viewforum" path="/forum/viewForum.jsp" />
+			<forward name="selectforum" path="/forum/selectForum.jsp" />
+		</action>
+
+		<action name="section" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/section" validate="false">
+			<forward name="viewsection" path="/forum/viewSection.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+			<forward name="selectforum" path="/forum/selectForum.jsp" />
+		</action>
+
+		<action name="sectionListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/sectionlist" validate="false" scope="request">
+			<forward name="listsection" path="/forum/listSection.jsp" />
+			<forward name="editsection" path="/forum/editSection.jsp" />
+			<forward name="viewsection" path="/forum/viewSection.jsp" />
+		</action>
+
+		<action name="topic" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/topic" validate="false">
+			<forward name="viewtopic" path="/forum/viewTopic.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="topicListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/topiclist" validate="false" scope="request">
+			<forward name="listtopic" path="/forum/listTopic.jsp" />
+			<forward name="edittopic" path="/forum/editTopic.jsp" />
+			<forward name="edittopicBatch"
+				path="/forum/editTopicBatch.jsp" />
+			<forward name="viewtopic" path="/forum/viewTopic.jsp" />
+		</action>
+
+		<action name="account" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/account" validate="false">
+			<forward name="viewaccount" path="/forum/viewAccount.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="accountListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/forum/accountlist" validate="false" scope="request">
+			<forward name="listaccount" path="/forum/listAccount.jsp" />
+			<forward name="editaccount" path="/forum/editAccount.jsp" />
+			<forward name="editaccountBatch"
+				path="/forum/editAccountBatch.jsp" />
+			<forward name="viewaccount" path="/forum/viewAccount.jsp" />
+		</action>
+	</action-mappings>
+</struts-config>

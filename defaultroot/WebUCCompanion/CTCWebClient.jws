@@ -1,0 +1,162 @@
+
+import com.jiangh.webuc.servicemanager.CTCManager;
+import com.jiangh.webuc.servicemanager.ThirdPartyServerApp;
+import com.jiangh.webuc.util.Utility;
+import com.jiangh.webuc.data.Constants;
+
+/**
+ * <p>Title: Web宽乐伴侣</p>
+ *
+ * <p>Description:
+ * 本业务作为第三方业务与宽乐通信WebService接口进行交互，为用户提供Web方式接入宽乐通信业务的能力</p>
+ * web客户端处理类。接受web容器调用，完成管理员或用户对CTC业务能力接入。本类将调用CTCManager类
+ * 方法，有其对请求进行继续处理。
+ * <p>Copyright: Copyright (c) 2007</p>
+ *
+ * <p>Company: GSTA</p>
+ *
+ * @author Jianghong
+ * @version 1.0
+ */
+public class CTCWebClient {
+
+    private static final String CLASS_DESC = "CTCWebClient";
+
+    /**
+     * Jianghong 2007-02-16
+     * 创建会场Web请求处理
+     */
+    public String createConf(String uc, String pw, String cee, String[] callees,
+                             int tp, String subject, String confpw) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::createConf called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "cee"+cee);
+        for (int i = 0; i < callees.length; i++) {
+            Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "callee"+String.valueOf(i)+":" + callees[i]);
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "tp:"+tp);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "subject:"+subject);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "confpw:"+confpw);
+
+        String confID = CTCManager.ctcManager.CreateConf(uc, pw, cee, callees,
+            tp, subject, confpw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::createConf return confID:" + confID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return confID;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 终止会场Web请求处理
+     */
+    public String releaseConf(String uc, String pw, String confID) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::releaseConf called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "confID:"+confID);
+
+        String retStr = CTCManager.ctcManager.ReleaseConf(uc, pw, confID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::releaseConf return code:" + retStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return retStr;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 获取会场列表Web请求处理
+     */
+    public String[] getConfList(String uc, String pw) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::getConfList called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+
+        String[] confList = CTCManager.ctcManager.GetConfList(uc, pw);
+        String retInf = null;
+        for (int i = 0; i < confList.length; i++) {
+            retInf += confList[i] + "|";
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::getConfList return info:" + retInf);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return confList;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 获取会场信息Web请求处理
+     */
+    public String[] getConfInfo(String uc, String pw, String confID) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::getConfInfo called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "confID:"+confID);
+
+        String[] confInfo = CTCManager.ctcManager.GetConfInfo(uc, pw, confID);
+        String retInf = new String();
+        for (int i = 0; i < confInfo.length; i++) {
+            retInf += confInfo[i] + "\n";
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::getConfInfo return info:" + retInf);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return confInfo;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 添加与会者Web请求处理
+     */
+    public String addIntoConf(String uc, String pw, String[] calleeInfo,
+                              String confID) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::addIntoConf called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "calleeInfo:");
+        for (int i = 0; i < calleeInfo.length; i++) {
+            Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "calleeInfo[i]"+'|');
+        }
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "confID:"+confID);
+
+        String retStr = CTCManager.ctcManager.AddCalleeIntoConf(uc, pw,
+            calleeInfo, confID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::addIntoConf return code:" + retStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return retStr;
+
+    }
+
+    /**
+     * Jianghong 2007-02-16
+     * 踢开与会者Web请求处理
+     */
+    public String delFromConf(String uc, String pw, String callee,
+                              String confID) {
+
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::delFromConf called with parameters:");
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "uc:"+uc);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "pw:"+pw);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "confID:"+confID);
+
+        String retStr = CTCManager.ctcManager.DelFromConf(uc, pw, callee,
+            confID);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "CTCWebClient::delFromConf return code:" + retStr);
+        Utility.doLog(Constants.LOG_LEVEL_DEBUG, CLASS_DESC, "");
+
+        return retStr;
+
+    }
+
+}

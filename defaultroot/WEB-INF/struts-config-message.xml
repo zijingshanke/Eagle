@@ -1,0 +1,140 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by ccggyy2002 (Delphi) -->
+
+<struts-config>
+	<form-beans>
+		<form-bean name="message"
+			type="com.fordays.masssending.message.Message" />
+		<form-bean name="messageListForm"
+			type="com.fordays.masssending.message.MessageListForm" />
+
+		<form-bean name="assignment"
+			type="com.fordays.masssending.message.Assignment" />
+		<form-bean name="assignmentListForm"
+			type="com.fordays.masssending.message.AssignmentListForm" />
+
+		<form-bean name="assignMessage"
+			type="com.fordays.masssending.message.AssignMessage" />
+		<form-bean name="assignMessageListForm"
+			type="com.fordays.masssending.message.AssignMessageListForm" />
+
+		<form-bean name="assignMessageLogListForm"
+			type="com.fordays.masssending.message.AssignMessageLogListForm" />
+
+		<form-bean name="messageSection"
+			type="com.fordays.masssending.message.MessageSection" />
+		<form-bean name="messageSectionListForm"
+			type="com.fordays.masssending.message.MessageSectionListForm" />
+	</form-beans>
+
+	<action-mappings>
+		<!-- 帖子管理 -->
+		<action name="message" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/message" validate="false">
+			<forward name="viewmessage" path="/message/viewMessage.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="messageListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/messagelist" validate="false" scope="request">
+			<forward name="listmessage" path="/message/listMessage.jsp" />
+			<forward name="editmessage" path="/message/editMessage.jsp" />
+			<forward name="viewmessage" path="/message/viewMessage.jsp" />
+		</action>
+
+		<!-- 任务管理 -->
+
+		<action name="assignment" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/assignment" validate="false">
+			<forward name="viewassignment"
+				path="/message/viewAssignment.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="assignmentListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/assignmentlist" validate="false" scope="request">
+			<forward name="listassignment"
+				path="/message/listAssignment.jsp" />
+			<forward name="editassignment"
+				path="/message/editAssignment.jsp" />
+			<forward name="viewassignment"
+				path="/message/viewAssignment.jsp" />
+		</action>
+
+		<!-- 发帖任务 -->
+		<action name="assignMessage" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/assignMessage" validate="false">
+			<forward name="viewassignMessage"
+				path="/message/viewAssignMessage.jsp" />
+			<forward name="viewassignMessageError"
+				path="/message/viewAssignMessageError.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="assignMessageListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/assignMessagelist" validate="false" scope="request">
+			<forward name="listassignMessage"
+				path="/message/listAssignMessage.jsp" />
+			<forward name="editassignMessage"
+				path="/message/editAssignMessage.jsp" />
+			<forward name="editassignMessageBatch"
+				path="/message/editAssignMessageBatch.jsp" />
+			<forward name="viewassignMessage"
+				path="/message/viewAssignMessage.jsp" />
+			<forward name="viewassignMessageError"
+				path="/message/viewAssignMessageError.jsp" />
+			<forward name="listexecuteAssignMessage"
+				path="/message/listExecuteAssignMessage.jsp" />
+			<forward name="listassignMessageCounter"
+				path="/message/listAssignMessageCounter.jsp" />
+		</action>
+
+		<!-- 发帖任务日志 -->
+		<action name="assignMessageLogListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/assignMessageLoglist" validate="false"
+			scope="request">
+			<forward name="listassignMessageLog"
+				path="/message/listAssignMessageLog.jsp" />
+			<forward name="viewassignMessageLog"
+				path="/message/viewAssignMessageLog.jsp" />
+			<forward name="viewLogAsAssignMessage"
+				path="/message/viewLogAsAssignMessage.jsp" />
+		</action>
+
+
+		<!--发帖目标（帖子版块） -->
+
+		<action name="messageSection" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/messageSection" validate="false">
+			<forward name="viewmessageSection"
+				path="/message/viewMessageSection.jsp" />
+			<forward name="index" path="/index.jsp"></forward>
+			<forward name="login" path="/login.jsp"></forward>
+		</action>
+
+		<action name="messageSectionListForm" parameter="thisAction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			path="/message/messageSectionlist" validate="false"
+			scope="request">
+			<forward name="listmessageSection"
+				path="/message/listMessageSection.jsp" />
+			<forward name="editmessageSection"
+				path="/message/editMessageSection.jsp" />
+			<forward name="editmessageSectionBatch"
+				path="/message/editMessageSectionBatch.jsp" />
+			<forward name="viewmessageSection"
+				path="/message/viewMessageSection.jsp" />
+		</action>
+	</action-mappings>
+</struts-config>

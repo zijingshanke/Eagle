@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<!--WebUCConfig.xml-->
+<!--
+	WebUCConfig.xml:业务属性参数配置文件。本配置文件配置业务为业务设置常用的固定属性参数，在业务初始化时被读取。
+	不应该随便更改此文件参数。当本文件被更改时，新参数值需要重启业务后方可生效。
+-->
+
+<WebUCCompanion>
+
+	<!--
+		第三方服务器应用调用本业务接口的方式。
+		local：本地接口调用
+		webservice:Web Service接口调用
+	-->
+	<InterfaceAccess>webservice</InterfaceAccess>
+
+
+	<!--
+		ObjectPool标签值是控制CTC和CTC服务的呼叫流量控制属性，分为CTC和CTD两组对象池属性。每组属性包含PoolSize和
+		ObjReleaseTime两组属性。PoolSize是对象池的容量，值越大，可允许的并发呼叫数量越多。CTD对象池容量上限为100，
+		CTC对象池容量上限为60。ObjReleaseTime为对象被守护线程释放的时间门限。CTD对象的释放时长门限下限为7200000，
+		上限为为10800000；CTC对象释放时长门限下限为为10800000，上限为14400000。
+	-->
+	<!--
+		对象池守护线程属性。对象池守护线程定期对CTD和CTC对象池进行扫描，对于池中超过对象释放时间门限的对象予以
+		强行释放，以避免发生资源吊死，影响业务运行。functionFlag属性是是否启动对象池守护线程。daemonInterval
+		属性是线程池扫描间隔时长，下限值为3600000，上限值为14400000。
+	-->
+	<ObjectPool>
+		<CTDPool functionFlag="true">
+			<PoolSize>80</PoolSize>
+			<ObjReleaseTime>7200000</ObjReleaseTime>
+			<daemonThread functionFlag="true">
+				<daemonInterval>7200000</daemonInterval>
+			</daemonThread>
+		</CTDPool>
+
+		<CTCPool functionFlag="true">
+			<PoolSize>30</PoolSize>
+			<ObjReleaseTime>10800000</ObjReleaseTime>
+			<daemonInterval>7200000</daemonInterval>
+			<daemonThread functionFlag="true">
+				<daemonInterval>7200000</daemonInterval>
+			</daemonThread>
+		</CTCPool>
+
+	</ObjectPool>
+
+
+	<SMSSend>
+		<!--
+			SMS并发发送处理线程属性。为了控制SMS发送流量，业务专门配置一定数量的线程处理SMS发送操作。包含两个属性。
+			ThreadNum是并发线程数量，上限值为8个。SendOprInterval是每个线程中SMS发送操作间隔时长，下限值为1000。
+		-->
+		<SMSSendThread functionFlag="true">
+			<ThreadNum>5</ThreadNum>
+			<SendOprInterval>1500</SendOprInterval>
+		</SMSSendThread>
+	</SMSSend>
+
+</WebUCCompanion>

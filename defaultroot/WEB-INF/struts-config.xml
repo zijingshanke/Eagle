@@ -1,0 +1,24 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by ccggyy2002 (Delphi) -->
+
+<struts-config>
+	<form-beans>
+
+	</form-beans>
+
+	<global-forwards>
+		<forward name="index" path="/index.jsp" />
+		<forward name="login" path="/login.jsp" />
+		<forward name="exit" path="/page/exit.jsp" />
+		<forward name="inform" path="/page/inform.jsp" />
+		<forward name="valid" path="/page/valid.jsp" />
+		<forward name="invalid" path="/page/validRight.jsp" />
+	</global-forwards>
+	
+	<!-- 
+	<controller contentType="text/html;charset=utf-8"
+		processorClass="com.fordays.masssending.base.SessionTimeOutProcessor"
+		nocache="true" locale="true">
+	</controller>
+	 -->
+</struts-config>

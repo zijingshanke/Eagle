@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-lazy-init="false" default-autowire="no"
+	default-dependency-check="none">
+
+	<bean id="dBCHPool" class="com.neza.database.DBCHPool">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="noUtil" class="com.neza.base.NoUtil">
+		<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate" />
+		</property>
+	</bean>
+
+<!-- 
+	<bean id="fdconstant"
+		class="com.fordays.masssending.base.Constant">
+		<property name="url">
+			<list>
+				<value>user.login</value>
+				<value>certificate.*</value>
+					<value>patternEmail.*</value>
+					<value>watch.*</value>
+			</list>
+		</property>
+	</bean>
+ -->
+
+	<bean id="theFilter"
+		class="com.neza.filters.SetCharacterEncodingFilter">
+		<property name="urls">
+			<list>
+				<value>/_jsp/mainTitle.jsp</value>
+			</list>
+		</property>
+	</bean>
+</beans>
